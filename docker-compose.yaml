@@ -1,0 +1,71 @@
+version: '3.7'
+services:
+  freeipa:
+    image: freeipa/freeipa-server:centos-8-stream
+    restart: unless-stopped
+    container_name: freeipa
+    hostname: freeipa
+    domainname: freeipa.eth.su
+#    extra_hosts:
+#      - "freeipa.eth.su:10.10.100.100"
+    privileged: true
+    environment:
+      IPA_SERVER_HOSTNAME: freeipa.eth.su
+      TZ: "Europe/Moscow"
+    tty: true
+    stdin_open: true
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - freeipavolume:/data:rw
+      - freeipavolumelogs:/var/logs
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0
+      - net.ipv6.conf.lo.disable_ipv6=0
+    security_opt:
+      - "seccomp:unconfined"
+    command:
+#     - --ip-address=213.159.206.61
+      - --domain=eth.su
+      - --realm=ETH.SU
+      - --http-pin=YOURPASSWORD
+      - --dirsrv-pin=YOURPASSWORD
+      - --ds-password=YOURPASSWORD
+      - --admin-password=YOURPASSWORD
+      - --setup-dns
+      - --auto-forwarders
+      - --no-host-dns
+      - --no-dnssec-validation
+      - --allow-zone-overlap
+      - --unattended
+      - -U
+    ports:
+      - "80:80"
+      - "443:443"
+      - "389:389"
+      - "636:636"
+      - "88:88"
+      - "464:464"
+      - "53:53"
+      - "88:88/udp"
+      - "464:464/udp"
+      - "123:123/udp"
+      - "53:53/udp"
+      - "7389:7389"
+      - "9443:9443"
+      - "9444:9444"
+      - "9445:9445"
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+    cap_add:
+      - SYS_TIME
+      - NET_ADMIN
+    security_opt:
+      - "seccomp:unconfined"
+
+volumes:
+  freeipavolume:
+  freeipavolumelogs:
+
