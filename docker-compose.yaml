@@ -5,7 +5,7 @@ services:
     restart: unless-stopped
     container_name: freeipa
     hostname: freeipa
-    domainname: freeipa.eth.su
+    domainname: eth.su
 #    extra_hosts:
 #      - "freeipa.eth.su:10.10.100.100"
     privileged: true
