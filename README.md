@@ -1,6 +1,11 @@
  Docker compose to build an FreeIPA server
 
 ```
+systemctl disable systemd-resolved.service 
+vim /etc/resolv.conf 
+```
+
+```
 git clone https://github.com/akshakirov/freeipa-docker-compose.git
 
 cd freeipa-docker-compose
