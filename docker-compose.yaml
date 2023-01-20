@@ -40,6 +40,8 @@ services:
       - --allow-zone-overlap
       - --unattended
       - -U
+    networks:
+      - freeipa
     ports:
       - "80:80"
       - "443:443"
@@ -47,11 +49,11 @@ services:
       - "636:636"
       - "88:88"
       - "464:464"
-      - "53:53"
+        #      - "53:53"
       - "88:88/udp"
       - "464:464/udp"
       - "123:123/udp"
-      - "53:53/udp"
+        #      - "53:53/udp"
       - "7389:7389"
       - "9443:9443"
       - "9444:9444"
@@ -68,4 +70,7 @@ services:
 volumes:
   freeipavolume:
   freeipavolumelogs:
+networks:
+  freeipa:
+    name: freeipa-network
 
