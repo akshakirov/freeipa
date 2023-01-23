@@ -26,6 +26,7 @@ services:
     security_opt:
       - "seccomp:unconfined"
     command:
+      - ipa-server-install
 #     - --ip-address=213.159.206.61
       - --domain=eth.su
       - --realm=ETH.SU
@@ -66,6 +67,11 @@ services:
       - NET_ADMIN
     security_opt:
       - "seccomp:unconfined"
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        max-file: '2'
 
 volumes:
   freeipavolume:
