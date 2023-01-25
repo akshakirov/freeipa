@@ -1,3 +1,18 @@
+## Build and start docker container manualy
+```
+git clone https://github.com/freeipa/freeipa-container.git
+
+cd freeipa-docker-compose/
+
+docker build -t freeipa-centos-8-stream -f  Dockerfile.centos-8-stream .
+
+cd ..
+
+bash install.sh
+
+```
+
+## docker-compose still in progress don't use it from this repo
  Docker compose to build an FreeIPA server
 
 ```
