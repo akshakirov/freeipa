@@ -11,6 +11,8 @@ services:
     domainname: eth.su
     cap_add:
       - SYS_TIME
+      - SYS_ADMIN
+      - NET_ADMIN
 #    privileged: true
     environment:
       IPA_SERVER_HOSTNAME: freeipa.eth.su
