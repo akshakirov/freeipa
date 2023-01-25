@@ -34,8 +34,7 @@ docker run --name freeipa-server -e TIME_ZONE="Europe/Moscow" --cap-add SYS_TIME
 
 ```
 
-## docker-compose still in progress don't use it from this repo
- Docker compose to build an FreeIPA server
+## Docker compose to build an FreeIPA server
 
 ```
 systemctl disable systemd-resolved.service 
@@ -43,21 +42,13 @@ vim /etc/resolv.conf
 ```
 
 ```
-git clone https://github.com/akshakirov/freeipa-docker-compose.git
+git clone https://github.com/akshakirov/freeipa.git
 
-cd freeipa-docker-compose
+cd freeipa
 
-docker-compose up -d
+git clone https://github.com/freeipa/freeipa-container.git
 
-docker logs freeipa -f
+docker-compose up -d && docker logs freeipa -f
 ```
 
 
-without _priveleged: yes_   gets an error
-
-```
-Failed to create /init.scope control group: Read-only file system
-Failed to allocate manager object: Read-only file system
-[!!!!!!] Failed to allocate manager object, freezing.
-Freezing execution.
-```
