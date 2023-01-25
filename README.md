@@ -52,7 +52,7 @@ docker-compose up -d && docker logs freeipa -f
 ```
 
 ## freeipa client adding
-
+```
 systemctl disable systemd-resolved.service 
 
 rm -rf /etc/resolv.conf 
@@ -69,4 +69,4 @@ ipa-client-install --hostname=ansible.eth.su  \
                    --enable-dns-updates \
                    --unattended \
                    --force-join
-
+```
