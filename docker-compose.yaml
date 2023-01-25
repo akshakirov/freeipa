@@ -12,6 +12,7 @@ services:
     cap_add:
       - SYS_ADMIN
       - SYS_TIME
+      - NET_ADMIN
 #    extra_hosts:
 #      - "freeipa.eth.su:10.10.100.100"
     privileged: true
@@ -22,10 +23,8 @@ services:
       TIME_ZONE: "Europe/Moscow"
     tty: true
     stdin_open: true
-    cap_add:
-      - NET_ADMIN
     volumes:
-      - /etc/localtime:/etc/localtime:ro
+#      - /etc/localtime:/etc/localtime:ro
       - ipa-data:/data:rw
       - ipa-logs:/var/log:rw
     sysctls:
