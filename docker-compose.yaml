@@ -6,6 +6,9 @@ services:
     container_name: freeipa
     hostname: freeipa
     domainname: eth.su
+    cap_add:
+      - SYS_ADMIN
+      - SYS_TIME
 #    extra_hosts:
 #      - "freeipa.eth.su:10.10.100.100"
     privileged: true
