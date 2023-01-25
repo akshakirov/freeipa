@@ -51,4 +51,22 @@ git clone https://github.com/freeipa/freeipa-container.git
 docker-compose up -d && docker logs freeipa -f
 ```
 
+## freeipa client adding
+
+systemctl disable systemd-resolved.service 
+
+rm -rf /etc/resolv.conf 
+
+echo "search eth.su" > /etc/resolv.conf; echo "nameserver 10.10.0.12" >> /etc/resolv.conf
+
+ipa-client-install --hostname=ansible.eth.su  \
+                   --mkhomedir \
+                   --domain="eth.su" \
+                   --server="freeipa.eth.su" \
+                   --realm="ETH.SU" \
+                   --principal="admin" \
+                   --password="YOURPASSWORD" \
+                   --enable-dns-updates \
+                   --unattended \
+                   --force-join
 
