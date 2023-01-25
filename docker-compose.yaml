@@ -17,7 +17,9 @@ services:
     privileged: true
     environment:
       IPA_SERVER_HOSTNAME: freeipa.eth.su
+      IPA_SERVER_IP: 10.10.0.12 
       TZ: "Europe/Moscow"
+      TIME_ZONE: "Europe/Moscow"
     tty: true
     stdin_open: true
     cap_add:
