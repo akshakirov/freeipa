@@ -10,26 +10,18 @@ services:
     hostname: freeipa
     domainname: eth.su
     cap_add:
-      - SYS_ADMIN
       - SYS_TIME
-      - NET_ADMIN
-#    extra_hosts:
-#      - "freeipa.eth.su:10.10.100.100"
-    privileged: true
+#    privileged: true
     environment:
       IPA_SERVER_HOSTNAME: freeipa.eth.su
       IPA_SERVER_IP: 10.10.0.12 
-      TZ: "Europe/Moscow"
       TIME_ZONE: "Europe/Moscow"
-    tty: true
-    stdin_open: true
     volumes:
-#      - /etc/localtime:/etc/localtime:ro
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
       - ipa-data:/data:rw
       - ipa-logs:/var/log:rw
     sysctls:
       - net.ipv6.conf.all.disable_ipv6=0
-      - net.ipv6.conf.lo.disable_ipv6=0
     security_opt:
       - "seccomp:unconfined"
     command:
@@ -79,4 +71,5 @@ volumes:
 networks:
   freeipa:
     name: freeipa-network
+
 
