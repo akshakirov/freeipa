@@ -6,7 +6,7 @@ services:
       context: freeipa-container/
       dockerfile: Dockerfile.centos-8-stream
     restart: unless-stopped
-    container_name: freeipa
+    container_name: freeipa-server
     hostname: freeipa
     domainname: eth.su
     cap_add:
@@ -15,7 +15,8 @@ services:
     environment:
       IPA_SERVER_HOSTNAME: freeipa.eth.su
       IPA_SERVER_IP: 10.10.0.12 
-      TIME_ZONE: "Europe/Moscow"
+      TIME_ZONE: 'Europe/Moscow'
+      TZ: 'Europe/Moscow'
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
       - ipa-data:/data:rw
@@ -71,5 +72,4 @@ volumes:
 networks:
   freeipa:
     name: freeipa-network
-
 
